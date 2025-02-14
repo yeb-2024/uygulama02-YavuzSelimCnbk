@@ -16,6 +16,7 @@ public class LoginPage implements ActionListener {
     JLabel passwordLabel;
     JTextField passwordField;
 
+    JPanel buttonPanel;
     JButton loginButton;
 
 
@@ -30,6 +31,7 @@ public class LoginPage implements ActionListener {
 
         userPanel = new JPanel();
         userPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        userPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         userPanel.add(userLabel);
         userPanel.add(userNameField);
@@ -44,13 +46,23 @@ public class LoginPage implements ActionListener {
 
         passwordPanel = new JPanel();
         passwordPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        passwordPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordField);
 
 
-        loginButton = new JButton();
+        loginButton = new JButton("Gönder");
+        loginButton.addActionListener(this);
+        loginButton.setPreferredSize(new Dimension(100, 50));
 
+
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+        buttonPanel.add(loginButton);
 
 
         frame = new JFrame();
@@ -60,6 +72,7 @@ public class LoginPage implements ActionListener {
 
         frame.add(userPanel);
         frame.add(passwordPanel);
+        frame.add(buttonPanel);
 
         frame.setVisible(true);
 
