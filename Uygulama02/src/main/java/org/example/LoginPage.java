@@ -79,7 +79,7 @@ public class LoginPage implements ActionListener {
 
     }
 
-    public void checkForSpacesInUsernameAndPassword(String username, String password)
+    public boolean checkForSpacesInUsernameAndPassword(String username, String password)
     {
         if (username.isEmpty() || password.isEmpty())
         {
@@ -89,13 +89,24 @@ public class LoginPage implements ActionListener {
                     "Hata",
                     JOptionPane.ERROR_MESSAGE
             );
+            return true;
+        }
+        return false;
+    }
+
+    public void checkSecurityOfUsername(String username)
+    {
+
+        if (username.chars().noneMatch(Character::isUpperCase)) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Kullanıcı adı büyük harf içermelidir!",
+                    "Hata",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
-    public void checkSecurityOfUsername()
-    {
-
-    }
     public void checkSecurityOfPassword(String password)
     {
         if (password.length() < 5)
@@ -109,6 +120,22 @@ public class LoginPage implements ActionListener {
         }
     }
 
+    public void checkAllInOrder(String username, String password)
+    {
+        boolean isEmpyt = checkForSpacesInUsernameAndPassword(username, password);
+
+        if (isEmpyt)
+        {
+
+        }
+        else {
+            checkSecurityOfPassword(password);
+            checkSecurityOfUsername(username);
+        }
+
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -116,8 +143,8 @@ public class LoginPage implements ActionListener {
             String username = userNameField.getText().trim();
             String password = passwordField.getText().trim();
 
-            checkForSpacesInUsernameAndPassword(username, password);
-            checkSecurityOfPassword(password);
+            checkAllInOrder(username, password);
+
         }
     }
 }
