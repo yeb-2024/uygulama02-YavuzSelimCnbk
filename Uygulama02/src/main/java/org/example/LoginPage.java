@@ -92,6 +92,22 @@ public class LoginPage implements ActionListener {
         }
     }
 
+    public void checkSecurityOfUsername()
+    {
+
+    }
+    public void checkSecurityOfPassword(String password)
+    {
+        if (password.length() < 5)
+        {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Şifre minimum beş karakterli olmalı!",
+                    "Hata",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 
 
     @Override
@@ -101,7 +117,7 @@ public class LoginPage implements ActionListener {
             String password = passwordField.getText().trim();
 
             checkForSpacesInUsernameAndPassword(username, password);
-
+            checkSecurityOfPassword(password);
         }
     }
 }
