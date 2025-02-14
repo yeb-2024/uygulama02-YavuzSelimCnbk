@@ -79,8 +79,29 @@ public class LoginPage implements ActionListener {
 
     }
 
+    public void checkForSpacesInUsernameAndPassword(String username, String password)
+    {
+        if (username.isEmpty() || password.isEmpty())
+        {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Lütfen tüm alanları doldurunuz!",
+                    "Hata",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == loginButton) {
+            String username = userNameField.getText().trim();
+            String password = passwordField.getText().trim();
 
+            checkForSpacesInUsernameAndPassword(username, password);
+
+        }
     }
 }
